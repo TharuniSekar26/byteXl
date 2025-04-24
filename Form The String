@@ -36,7 +36,6 @@ Delete the node tt to make remaining nodes when concatenated form apple which is
 ===========================================================================================================
 
 
-
 import java.util.*;
 
 public class Main {
@@ -49,8 +48,8 @@ public class Main {
         ll.insertAtEnd(s);
       }
       String target = sc.next();
-      ll.delete(target);
-      ll.display();
+      Node head = ll.delete(target);
+      ll.display( head);
   }
 }
 class Node{
@@ -76,12 +75,13 @@ class LinkedList{
     temp.next  = newNode;
   }
   
-  void delete(String target){
+  Node delete(String target){
     Node dummy = new Node("");
     dummy.next = head;
     Node temp = dummy;
     int i=0;
     while(temp!=null && temp.next!=null){
+      
       if(target.startsWith(temp.next.data,i)){
         i+=temp.next.data.length();
         temp = temp.next;
@@ -89,17 +89,23 @@ class LinkedList{
         temp.next = temp.next.next;
       }
     }
+    if(i==target.length()){
+      return dummy.next;
+    }else{
+      return null;
+    }
   }
   
-  void display(){
+  void display(Node head){
     if(head==null){
       System.out.print("-1");
-      return;   
     }
     Node temp = head;
+    String res = "";
    while(temp!=null){
       System.out.print(temp.data+" ");
       temp = temp.next;
     }
+   
   }
 }
