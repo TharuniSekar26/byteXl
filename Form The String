@@ -1,0 +1,105 @@
+Scenario:
+You and your friend enjoy playing games involving data structures, especially linked lists. In this challenge, your friend has created a linked list with randomly assigned lowercase strings in its nodes. Alongside, a random target string is provided. Your task is to determine after deleting 0 or more nodes of the linked list, if you can spell out the target string when the nodes' values are concatenated in sequence.
+
+If there are multiple ways, find the sequence which uses the earliest nodes. You must first build the linked list and then proceed to solve the problem.
+
+Objective:
+Your task is to write a program that solves the given game. If it's possible to construct the target string by deleting nodes and then concatenating values from the remaining linked list nodes, output the sequence of nodes (separated by spaces) that together form the target string. If it’s not possible to form the target string, print -1.
+
+Input Format:
+The input to your program consists of the node strings and target string:
+The first line contains an integer N, the number of nodes,
+The second line contains N strings, representing the value of each node.
+The third line contains the target string.
+
+Output Format:
+Print space separated strings which when concatenated form the target string or print -1.
+
+Constraints:
+2 ≤ N ≤ 10
+3
+3
+  (number of nodes)
+1 ≤ Target string length ≤ 50
+Sample Input:
+4
+ap p tt le
+apple
+
+Sample Output:
+ap p le
+
+Explanation 1:
+Delete the node tt to make remaining nodes when concatenated form apple which is the target string.
+
+
+===========================================================================================================
+
+
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+      Scanner sc = new Scanner(System.in);
+      LinkedList ll = new LinkedList();
+      int n= sc.nextInt();
+      for(int i=0;i<n;i++){
+        String s = sc.next();
+        ll.insertAtEnd(s);
+      }
+      String target = sc.next();
+      ll.delete(target);
+      ll.display();
+  }
+}
+class Node{
+  String data;
+  Node next;
+  Node(String data){
+    this.data = data;
+    this.next = null;
+  }
+}
+class LinkedList{
+  Node head = null;
+  void insertAtEnd(String ele){
+    Node newNode = new Node(ele);
+    if(head == null){
+      head = newNode;
+      return;
+    }
+    Node temp = head;
+    while(temp.next!=null){
+      temp = temp.next;
+    }
+    temp.next  = newNode;
+  }
+  
+  void delete(String target){
+    Node dummy = new Node("");
+    dummy.next = head;
+    Node temp = dummy;
+    int i=0;
+    while(temp!=null && temp.next!=null){
+      if(target.startsWith(temp.next.data,i)){
+        i+=temp.next.data.length();
+        temp = temp.next;
+      }else{
+        temp.next = temp.next.next;
+      }
+    }
+  }
+  
+  void display(){
+    if(head==null){
+      System.out.print("-1");
+      return;   
+    }
+    Node temp = head;
+   while(temp!=null){
+      System.out.print(temp.data+" ");
+      temp = temp.next;
+    }
+  }
+}
