@@ -1,0 +1,35 @@
+Validating Height Difference in Binary Search Tree Nodes
+Max Score: 5 | Difficulty: medium
+Background:
+You are provided with a list of unique integers representing the nodes of a Binary Search Tree (BST). Your task is to determine if a BST can be constructed using all the given integers such that the height difference between two specified nodes matches a given value ( H ). Multiple queries will be provided, each specifying different node pairs and their desired height difference.
+
+Objective:
+For each query, check whether it is possible to construct a BST using the provided integers where the height difference between two specific nodes is exactly ( H ). Each query specifies two unique nodes and the required height difference ( H ).
+
+Input Format:
+The first line contains an integer ( N ), representing the number of integers.
+The second line contains ( N ) unique integers, representing the nodes to be used for constructing the BST.
+The third line contains an integer ( K ), representing the number of queries.
+The next ( K ) lines each contain three space-separated integers ( A, B, H ), where ( A ) and ( B ) are unique integers from the given list, and ( H ) is the desired height difference between these nodes.
+Output Format:
+Print ( K ) lines, each containing "Yes" or "No", indicating whether it is possible to construct a BST satisfying the conditions of each query.
+
+Constraints:
+2 ≤ N ≤ 10^5 (number of integers)
+1 ≤ K ≤ 10^5 (number of queries)
+0 ≤ H ≤ 10^5 (height difference needed)
+Sample Input:
+6
+10 5 15 3 7 20
+2
+5 20 5
+3 7 4
+
+Sample Output:
+Yes
+No
+
+Explanation:
+
+For the first query 2 10 3, a BST can be constructed using the integers such that the height difference between the nodes with values 2 and 10 is exactly 3.
+For the second query 2 4 3, no possible BST can be constructed that meets the condition of having a height difference of exactly 3 between nodes 2 and 4.
